@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import AddFriend from './AddFriend';
 import Friend from './Friend';
 
@@ -9,10 +9,12 @@ const FriendsList = () => {
     useEffect(() => {
         axiosWithAuth()
         .get('/friends')
-        .then(res => setFriends(res.data))
+        .then(res => {console.log(res); 
+            setFriends(res.data)})
         .catch(err => console.log(err.response));
-    });
+    },[]);
 
+    console.log(friends);
     return(
         <div>
             <AddFriend />
